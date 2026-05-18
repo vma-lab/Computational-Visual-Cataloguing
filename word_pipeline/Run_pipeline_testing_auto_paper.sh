@@ -380,7 +380,7 @@ fi
     echo "ERROR: cannot find colour Python script in:"
     echo "  $COLOUR"
     echo "You can manually specify it like:"
-    echo "  COLOUR_SCRIPT=/path/to/script.py bash ./Run_pipeline_testing_auto_paper_v2.sh"
+    echo "  COLOUR_SCRIPT=/path/to/script.py bash ./Run_pipeline_testing_auto_paper.sh"
     exit 1
 }
 

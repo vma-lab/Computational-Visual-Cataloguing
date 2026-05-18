@@ -1,10 +1,27 @@
-# Computational Visual Cataloguing (CVC) Pipeline
+# CVC — Word Pipeline
 
-This repository is the reference implementation of **Computational Visual Cataloguing (CVC)**, an extensible computer-vision framework for cataloguing handwritten heritage at scale. Manual cataloguing cannot keep pace with the digitisation of notebooks, letters and other manuscripts, while text-only OCR pipelines discard the visual cues: orientation, ink colour, writing implement that scholars and curators actually rely on. CVC closes that gap by combining **content-bearing page detection**, **cross-script word localisation** and **word-level visual-attribute classification** (orientation / colour / writing implement) into structured, searchable catalogue fields.
+This folder implements the **word pipeline** of CVC (Computational Visual Cataloguing). Given a content-bearing manuscript page, it localises every word and classifies its visual attributes (colour, orientation, writing implement), then writes the result into a structured, searchable catalogue.
 
-The pipeline is designed to learn robustly from densely written manuscript pages and limited human annotations, which reflects the natural challenges of historical handwritten collections (multilingual content, varied orientations and colours, diverse implements, irregular layouts). It was developed and evaluated on **Rainer Maria Rilke's notebooks**, a culturally significant multilingual corpus, and the released models and dataset accompany the CVC paper.
+It is **one of three components** in the parent repository:
 
-Concretely, the codebase chains four sequential tasks plus a final visualisation stage:
+- [`../page_detection/`](../page_detection) — detects primary content-bearing pages in raw notebook scans (CVC paper §4.1).
+- **`./` (this folder)** — word detection + visual-attribute classification + visualisation (CVC paper §4.2–§4.4, §4.5, §6).
+- [`../scriptsight/`](../scriptsight) — interactive GUI for exploring and filtering the catalogues produced by this pipeline (CVC paper §5).
+
+See the top-level [`../README.md`](../README.md) for the overall CVC system and the paper citation.
+
+This component is designed to learn robustly from densely written manuscript pages and limited human annotations, reflecting the natural challenges of historical handwritten collections (multilingual content, varied orientations and colours, diverse implements, irregular layouts). It was developed and evaluated on **Rainer Maria Rilke's notebooks**.
+
+### Inputs to this pipeline
+
+The word pipeline expects **cropped primary pages** as input (one content-bearing page per image). You can obtain these in two ways:
+
+1. **Run `../page_detection/` first** and feed its cropped outputs into this folder, or
+2. **Place pre-cropped pages directly** into `1_textdetection/data/DLA/img/` (see [§3. Download dataset](#3-download-dataset)). The released DLA-RMR dataset already contains the cropped primary pages.
+
+### Internal stages
+
+Concretely, this folder chains four sequential tasks plus a final visualisation stage:
 
 ```
 1_textdetection  →  2_Colour  →  3_Orn (orientation)  →  4_Tool (writing tool)  →  5_visualization
@@ -27,16 +44,16 @@ The whole testing pipeline is driven by a **single script**:
 - [Training pipeline](#training-pipeline)
 - [Pipeline internals](#pipeline-internals)
 - [Configuration flags](#configuration-flags)
-- [Authors](#authors)
+- [Maintainer](#maintainer)
 
 ---
 
 ## Project structure
 
-The repository follows a strict **5-stage pipeline** (one folder per stage). Tasks 3 (orientation) and 4 (writing tool) additionally share a **5-step internal layout** — `1_augmentation → 2_search_architecture → 3_Train_augmented_data → 4_Test_*_with_annotation → 5_Test_*_without_annotation` — so the research workflow (augment → architecture search → final training → evaluate on labelled test → inference on unlabelled data) is the same for both classifiers.
+This component follows a strict **5-stage pipeline** (one folder per stage). Tasks 3 (orientation) and 4 (writing tool) additionally share a **5-step internal layout** — `1_augmentation → 2_search_architecture → 3_Train_augmented_data → 4_Test_*_with_annotation → 5_Test_*_without_annotation` — so the research workflow (augment → architecture search → final training → evaluate on labelled test → inference on unlabelled data) is the same for both classifiers.
 
 ```
-All/
+word_pipeline/
 ├── Run_pipeline_testing_auto_paper.sh         # ← One script runs the whole test pipeline
 ├── README.md
 ├── .gitignore
@@ -435,9 +452,9 @@ bash Run_pipeline_testing_auto_paper.sh
 
 ---
 
-## Authors
+## Maintainer
 
-Developed by **Quang Vinh Dang**, Visual Manuscript Analysis Lab, Centre for the Study of Manuscript Cultures (CSMC), Universität Hamburg.
+This component (the CVC word pipeline) is maintained by **Quang Vinh Dang** (Visual Manuscript Analysis Lab, Centre for the Study of Manuscript Cultures, Universität Hamburg), under supervision from **Dr. Hussein Mohammed**.
 
-Project supervision: **Dr. Hussein Mohammed**.
+For the full author list of CVC and the paper citation, see the top-level [`../README.md`](../README.md).
 
