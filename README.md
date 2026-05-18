@@ -8,9 +8,9 @@ CVC is intended to complement, not replace, expert cataloguing. By exposing page
 
 This repository bundles the three components of CVC, each in its own folder with its own README:
 
-1. [`page_detection/`](./page_detection): YOLOv11 primary-page detection on raw notebook scans (paper §4.1).
-2. [`word_pipeline/`](./word_pipeline): CLIP+DBNet word detection, training-free colour estimation, CLIP+MLP orientation and writing-implement classification, plus a final visualisation stage (paper §4.2 to §4.5).
-3. [`scriptsight/`](./scriptsight): interactive GUI for filtering, previewing and exporting CVC catalogues (paper §5).
+1. [`page_detection/`](./page_detection): detects the primary content-bearing pages in raw notebook scans.
+2. [`word_pipeline/`](./word_pipeline): localises every word on each page and classifies its colour, orientation and writing implement, then writes a structured catalogue; includes a final visualisation stage.
+3. [`scriptsight/`](./scriptsight): interactive GUI for filtering, previewing and exporting the resulting catalogues.
 
 A typical end-to-end run is `page_detection/` then `word_pipeline/` then `scriptsight/`, but each component can also be used independently. See each folder's README for setup, usage and per-component details.
 
@@ -24,18 +24,7 @@ A typical end-to-end run is `page_detection/` then `word_pipeline/` then `script
 
 ## Citation
 
-If you use CVC, any of the released models, the catalogues, or the dataset, please cite:
-
-```bibtex
-@article{mohammed2025cvc,
-  title  = {Computational Visual Cataloguing},
-  author = {Mohammed, Hussein and Dang, Quang-Vinh and Kinder, Anna and Richter, Sandra},
-  year   = {2025},
-  note   = {Manuscript. DOI and journal reference to be added once published.}
-}
-```
-
-The BibTeX entry will be updated when the paper is published.
+Citation details will be added here after publication.
 
 ## Authors
 
