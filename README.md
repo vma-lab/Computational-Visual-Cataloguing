@@ -35,7 +35,6 @@ Citation details will be added here after publication.
 | Anna Kinder | German Literature Archive (DLA), Marbach | Anna.Kinder@dla-marbach.de |
 | Sandra Richter | German Literature Archive (DLA), Marbach | Sandra.Richter@dla-marbach.de |
 
-Hussein Mohammed and Quang-Vinh Dang contributed equally to this work. See the paper's "Author contribution" statement for per-section credit.
 
 ## Acknowledgements
 
