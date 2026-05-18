@@ -1,6 +1,6 @@
 # Page Detection (part of CVC)
 
-This folder implements the **page-detection** stage of CVC (Computational Visual Cataloguing). Given a raw notebook scan (which may contain a partial opposing page and other background), it detects the primary content-bearing page(s) and outputs cropped page images for downstream processing. See CVC paper §4.1.
+This folder implements the **page-detection** stage of CVC (Computational Visual Cataloguing). Given a raw notebook scan (which may contain a partial opposing page and other background), it detects the primary content-bearing page(s) and outputs cropped page images for downstream processing.
 
 It is **one of three components** in the parent repository, alongside [`../word_pipeline/`](../word_pipeline) and [`../scriptsight/`](../scriptsight). See the top-level [`../README.md`](../README.md) for the overall CVC system and the paper citation.
 

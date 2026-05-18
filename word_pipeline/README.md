@@ -4,9 +4,9 @@ This folder implements the **word pipeline** of CVC (Computational Visual Catalo
 
 It is **one of three components** in the parent repository:
 
-- [`../page_detection/`](../page_detection): detects primary content-bearing pages in raw notebook scans (CVC paper §4.1).
-- **`./` (this folder)**: word detection, visual-attribute classification, and visualisation (CVC paper §4.2-§4.4, §4.5, §6).
-- [`../scriptsight/`](../scriptsight): interactive GUI for exploring and filtering the catalogues produced by this pipeline (CVC paper §5).
+- [`../page_detection/`](../page_detection): detects primary content-bearing pages in raw notebook scans.
+- **`./` (this folder)**: word detection, visual-attribute classification, and visualisation.
+- [`../scriptsight/`](../scriptsight): interactive GUI for exploring and filtering the catalogues produced by this pipeline.
 
 See the top-level [`../README.md`](../README.md) for the overall CVC system and the paper citation.
 
