@@ -1,0 +1,131 @@
+# ===========================================================
+# Submit_Code_All — .gitignore
+# Keep only source code, configs, and shell scripts in git.
+# Large checkpoints / datasets / generated outputs are hosted
+# separately on UHHCloud (see README.md).
+# ===========================================================
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+env/
+venv/
+ENV/
+
+# --- Editor / OS ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ===========================================================
+# Model checkpoints (downloaded from UHHCloud)
+# ===========================================================
+*.pth
+*.pt
+*.bin
+*.ckpt
+*.safetensors
+
+# Top-level checkpoint folder (mirror of the UHHCloud share)
+/checkpoint_model/
+
+# Pretrained CLIP weights
+1_textdetection/pretrained/*.pt
+1_textdetection/pretrained/*.pth
+
+# ===========================================================
+# Datasets (downloaded from UHHCloud)
+# ===========================================================
+
+# Top-level dataset folders
+/Dataset_DLA/
+/Augmented_DLA/
+
+# Per-stage data folders that mirror the dataset
+1_textdetection/data/
+
+# Per-stage augmented patches (used for training / architecture search)
+3_Orn/3_Train_augmented_data/text_patches_augmented_betterv3_80/
+3_Orn/2_search_architecture/text_patches_augmented_betterv3_80/
+3_Orn/1_augmentation/text_patches_train_80/
+3_Orn/4_Test_orn_with_annotation/text_patches_test_20/
+
+4_Tool/3_Train_augmented_data/augmented_patches_tool_v3/
+4_Tool/2_search_architecture/augmented_patches_tool_v3/
+4_Tool/1_augmentation/text_patches_train_80/
+4_Tool/4_Test_tool_with_annotation/text_patches_test_20/
+
+2_Colour/4_Test_colour_with_annotation/img/
+2_Colour/4_Test_colour_with_annotation/imgs/
+
+# Any output folder produced by augmentation scripts
+3_Orn/1_augmentation/**/output/
+4_Tool/1_augmentation/**/output/
+
+# Pre-extracted CLIP feature matrices used by training scripts
+**/orientation_features_clipL14_all.npz
+**/writing_tool_features_clipL14_all.npz
+
+# ===========================================================
+# Pipeline-generated intermediate / output folders
+# ===========================================================
+
+# Text detection
+1_textdetection/show/
+1_textdetection/work_dirs/
+
+# 2_Colour outputs and staged inputs
+2_Colour/5_Test_Colour_without_annotation/jsons/
+2_Colour/5_Test_Colour_without_annotation/img/
+2_Colour/5_Test_Colour_without_annotation/imgs/
+2_Colour/5_Test_Colour_without_annotation/ColoredJson_Output/
+2_Colour/5_Test_Colour_without_annotation/ColoredName_CropedPatch_Output/
+
+# 3_Orn outputs and staged inputs
+3_Orn/5_Test_Orn_without_annotation/ColoredJson_Output2Input/
+3_Orn/5_Test_Orn_without_annotation/ColoredName_CropedPatch_Output2Input/
+3_Orn/5_Test_Orn_without_annotation/ColoredOrnedJson_Output/
+3_Orn/5_Test_Orn_without_annotation/ColoredOrnedName_Output/
+3_Orn/5_Test_Orn_without_annotation/confusion_matrices/
+3_Orn/5_Test_Orn_without_annotation/test_predictions_*.csv
+
+# 4_Tool outputs and staged inputs
+4_Tool/5_Test_tool_without_annotation/ColoredOrnedJson_Output2Input/
+4_Tool/5_Test_tool_without_annotation/ColoredOrnedName_Output2Input/
+4_Tool/5_Test_tool_without_annotation/ColoredOrnedTooledJson_Output/
+
+# 5_visualization outputs and staged inputs
+5_visualization/img/
+5_visualization/ColoredOrnedTooledJson_Output/
+5_visualization/output_visualized_predict_full/
+5_visualization/output_visualized_GT_updated/
+5_visualization/output_compare_pred_top_gt_bottom/
+5_visualization/Prediction_full.json
+5_visualization/GT_updated.json
+
+# Extracted CLIP features (regenerated every run)
+**/features_clipL14*.npz
+**/orientation_features_clipL14*.npz
+**/writing_tool_features_clipL14*.npz
+
+# ===========================================================
+# Archived versions created by the master script
+# (OUTPUT_CONFLICT_MODE=archive)
+# ===========================================================
+*_auto_V[0-9]*
+*_auto_V[0-9]*/
+
+# ===========================================================
+# Misc logs
+# ===========================================================
+*.log
+*.out
+nohup.out

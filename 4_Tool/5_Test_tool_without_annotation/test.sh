@@ -1,0 +1,7 @@
+export CUDA_VISIBLE_DEVICES=0
+
+source activate open-mmlab
+
+python 1_extract_features_testing_MultiBatchThread_Fastest_V4.py
+
+python 2_test_classifier_without_evaluation_MultiBatchThread_Fastest_V4.py

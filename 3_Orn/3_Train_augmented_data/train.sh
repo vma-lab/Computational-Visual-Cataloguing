@@ -1,0 +1,9 @@
+export CUDA_VISIBLE_DEVICES=1
+
+source activate open-mmlab
+
+#bash aug.sh
+
+#python 1_extract_features_kfold_V1.py
+
+python 2_train_classifier_V3.py
