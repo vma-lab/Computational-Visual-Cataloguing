@@ -1,12 +1,12 @@
-# CVC — Word Pipeline
+# Word Pipeline (part of CVC)
 
 This folder implements the **word pipeline** of CVC (Computational Visual Cataloguing). Given a content-bearing manuscript page, it localises every word and classifies its visual attributes (colour, orientation, writing implement), then writes the result into a structured, searchable catalogue.
 
 It is **one of three components** in the parent repository:
 
-- [`../page_detection/`](../page_detection) — detects primary content-bearing pages in raw notebook scans (CVC paper §4.1).
-- **`./` (this folder)** — word detection + visual-attribute classification + visualisation (CVC paper §4.2–§4.4, §4.5, §6).
-- [`../scriptsight/`](../scriptsight) — interactive GUI for exploring and filtering the catalogues produced by this pipeline (CVC paper §5).
+- [`../page_detection/`](../page_detection): detects primary content-bearing pages in raw notebook scans.
+- **`./` (this folder)**: word detection, visual-attribute classification, and visualisation.
+- [`../scriptsight/`](../scriptsight): interactive GUI for exploring and filtering the catalogues produced by this pipeline.
 
 See the top-level [`../README.md`](../README.md) for the overall CVC system and the paper citation.
 
@@ -44,13 +44,13 @@ The whole testing pipeline is driven by a **single script**:
 - [Training pipeline](#training-pipeline)
 - [Pipeline internals](#pipeline-internals)
 - [Configuration flags](#configuration-flags)
-- [Maintainer](#maintainer)
+- [Developer](#developer)
 
 ---
 
 ## Project structure
 
-This component follows a strict **5-stage pipeline** (one folder per stage). Tasks 3 (orientation) and 4 (writing tool) additionally share a **5-step internal layout** — `1_augmentation → 2_search_architecture → 3_Train_augmented_data → 4_Test_*_with_annotation → 5_Test_*_without_annotation` — so the research workflow (augment → architecture search → final training → evaluate on labelled test → inference on unlabelled data) is the same for both classifiers.
+This component follows a strict **5-stage pipeline** (one folder per stage). Tasks 3 (orientation) and 4 (writing tool) additionally share a **5-step internal layout** (`1_augmentation → 2_search_architecture → 3_Train_augmented_data → 4_Test_*_with_annotation → 5_Test_*_without_annotation`), so the research workflow (augment → architecture search → final training → evaluate on labelled test → inference on unlabelled data) is the same for both classifiers.
 
 ```
 word_pipeline/
@@ -264,7 +264,7 @@ Place them under:
 └── instances_training.json
 ```
 
-That is the **only** location you need to fill in for testing — the master script propagates images and JSONs to every downstream stage automatically.
+That is the **only** location you need to fill in for testing. The master script propagates images and JSONs to every downstream stage automatically.
 
 ---
 
@@ -309,10 +309,10 @@ Final comparison output:
 
 After the pipeline finishes you will find:
 
-- `5_visualization/Prediction_full.json` — merged predictions
-- `5_visualization/output_visualized_predict_full/` — pages with predicted polygons + labels
-- `5_visualization/output_visualized_GT_updated/` — pages with ground-truth polygons + labels
-- `5_visualization/output_compare_pred_top_gt_bottom/` — side-by-side (prediction on top, GT below) — **this is the main qualitative result**
+- `5_visualization/Prediction_full.json`: merged predictions
+- `5_visualization/output_visualized_predict_full/`: pages with predicted polygons + labels
+- `5_visualization/output_visualized_GT_updated/`: pages with ground-truth polygons + labels
+- `5_visualization/output_compare_pred_top_gt_bottom/`: side-by-side (prediction on top, GT below). **This is the main qualitative result.**
 
 ---
 
@@ -452,9 +452,9 @@ bash Run_pipeline_testing_auto_paper.sh
 
 ---
 
-## Maintainer
+## Developer
 
-This component (the CVC word pipeline) is maintained by **Quang Vinh Dang** (Visual Manuscript Analysis Lab, Centre for the Study of Manuscript Cultures, Universität Hamburg), under supervision from **Dr. Hussein Mohammed**.
+This component (the CVC word pipeline) was developed by **Quang Vinh Dang** (Visual Manuscript Analysis Lab, Centre for the Study of Manuscript Cultures, Universität Hamburg), under supervision from **Dr. Hussein Mohammed**.
 
 For the full author list of CVC and the paper citation, see the top-level [`../README.md`](../README.md).
 
