@@ -1,62 +1,91 @@
-import os
+"""Fine-tune a YOLOv11 detector for primary-page detection in notebook scans."""
 
-from ultralytics import YOLO
+from __future__ import annotations
+
+import argparse
+
 import torch
-
-# Set CUDA devices visible to PyTorch
-os.environ["CUDA_VISIBLE_DEVICES"] = "0,1"
-DEVICE = "cuda:1" if torch.cuda.is_available() else "cpu"
-
-# Clears CUDA memory
-torch.cuda.empty_cache()
+from ultralytics import YOLO
 
 
-def train_yolo():
-    # Build a YOLOv9c model from scratch
-    # model = YOLO(" .yaml")
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--data",
+        required=True,
+        help="Path to the YOLO dataset YAML (produced by create_yaml.py).",
+    )
+    parser.add_argument(
+        "--model",
+        default="yolo11x.pt",
+        help="YOLO weights to fine-tune from. Default: yolo11x.pt.",
+    )
+    parser.add_argument(
+        "--project",
+        default="./Results/",
+        help="Project directory under which training runs are written.",
+    )
+    parser.add_argument(
+        "--name",
+        default="DLA_pages",
+        help="Name of this training run (subfolder under --project).",
+    )
+    parser.add_argument("--epochs", type=int, default=100)
+    parser.add_argument("--imgsz", type=int, default=1024)
+    parser.add_argument("--batch", type=int, default=2)
+    parser.add_argument(
+        "--device",
+        default=None,
+        help="CUDA device id (e.g. 'cuda:0') or 'cpu'. Default: auto-select.",
+    )
+    parser.add_argument("--workers", type=int, default=0)
+    parser.add_argument("--patience", type=int, default=10)
+    parser.add_argument("--save-period", type=int, default=10)
+    parser.add_argument("--lr0", type=float, default=0.0001)
+    parser.add_argument("--weight-decay", type=float, default=0.0005)
+    parser.add_argument("--optimizer", default="AdamW")
+    return parser.parse_args()
 
-    # Build a YOLOv11x model from pretrained weight
-    model = YOLO("models/yolo11x.pt").to(DEVICE)
 
-    # Display model information (optional)
+def main() -> None:
+    args = parse_args()
+
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+
+    device = args.device
+    if device is None:
+        device = "cuda:0" if torch.cuda.is_available() else "cpu"
+
+    model = YOLO(args.model).to(device)
     model.info()
 
-    # Train the model
-    results = model.train(
-        data=r'./YOLO/data/DLA/DLA.yaml',
-        epochs=100,
-        imgsz=1024,
-        batch=2,
+    model.train(
+        data=args.data,
+        epochs=args.epochs,
+        imgsz=args.imgsz,
+        batch=args.batch,
         save=True,
-        device=DEVICE,
+        device=device,
         resume=False,
-        workers=0,
-        save_period=10,
+        workers=args.workers,
+        save_period=args.save_period,
         cache=False,
-        name="DLA_pages",
-        project="./Results/",
-
-        # Learning Rate
-        lr0=0.0001,
-        optimizer='AdamW',
-        weight_decay=0.0005,
-
-        # Freezing Layers
-        # freeze=list(range(0, 4)),  # Freezes layers 0 to 5,
-
-        # Early Stopping
-        patience=10,
-
-        # Recommended Augmentations
+        name=args.name,
+        project=args.project,
+        lr0=args.lr0,
+        optimizer=args.optimizer,
+        weight_decay=args.weight_decay,
+        patience=args.patience,
         hsv_h=0.015,
         hsv_s=0.7,
         hsv_v=0.4,
         fliplr=0.5,
         mosaic=0.2,
         mixup=0.0,
-        scale=0.2
+        scale=0.2,
     )
 
 
-if __name__ == '__main__':
-    train_yolo()
+if __name__ == "__main__":
+    main()
