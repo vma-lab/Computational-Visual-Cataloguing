@@ -16,11 +16,12 @@ A typical end-to-end run is `page_detection/` then `word_pipeline/` then `script
 
 ## Data, models and catalogues
 
-- **DLA-RMR annotated dataset**: [https://cloud.uni-hamburg.de/s/M4Xx7QswjtgjLjD] (will be moved to [https://www.fdr.uni-hamburg.de/record/18097] after revision
+- **DLA-RMR annotated dataset**: [https://cloud.uni-hamburg.de/s/M4Xx7QswjtgjLjD] (will be moved to [https://www.fdr.uni-hamburg.de/record/18097] after updating the current version)
 - **Generated CVC catalogue for Rilke's notebooks**: https://www.fdr.uni-hamburg.de/record/17811
 - **Sample catalogue with 30 test pages** (used by ScriptSight demos): https://www.fdr.uni-hamburg.de/record/17614
+- **Short ScriptSight demo video**: https://www.csmc.uni-hamburg.de/publications/software/scriptsight.html
 - **ScriptSight standalone source release**: https://www.fdr.uni-hamburg.de/record/17616
-- **Trained model checkpoints**: see the per-component READMEs for download links and placement instructions.
+- **Trained model checkpoints**: https://cloud.uni-hamburg.de/s/q8qZBjFZ7TPSjr3. Also see the per-component READMEs for download links and placement instructions.
 
 ## Citation
 
