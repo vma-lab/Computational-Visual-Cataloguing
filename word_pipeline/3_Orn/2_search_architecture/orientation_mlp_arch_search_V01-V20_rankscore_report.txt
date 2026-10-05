@@ -1,0 +1,32 @@
+=== Orientation MLP architecture search report ===
+FOLDS=5 (notebook-level, stratified)  N_SEEDS_PER_FOLD=3 (probabilities averaged)
+RankScore = Avg F1(macro) - 0.5 * Std F1(macro), computed on original validation patches
+The 28 training notebooks stay whole and form five folds of 5, 3, 9, 7, and 4 notebooks.
+Input: CLIP ViT-L/14 (letterbox=True) + geometric branch=True | Loss: class-weighted CE, mixup=True(alpha=0.2) | fixed 30 epochs, no early stopping
+
+ID    Depth  Widths              Drop  BN      Avg F1(macro) ± std   RankScore  Combined F1
+-------------------------------------------------------------------------------------------
+V01       0  -                      -  No       0.7748 ± 0.0575        0.7461       0.8000
+V02       1  128                    -  No       0.8035 ± 0.0636        0.7717       0.8226
+V03       1  256                    -  No       0.8126 ± 0.0678        0.7787       0.8303
+V04       1  256                  0.2  No       0.8076 ± 0.0681        0.7736       0.8264
+V05       2  512-256              0.3  No       0.8153 ± 0.0544        0.7881       0.8308
+V06       2  512-256              0.4  No       0.8118 ± 0.0554        0.7841       0.8292
+V07       2  512-256              0.3  Yes      0.8276 ± 0.0518        0.8017       0.8411
+V08       2  1024-512             0.4  No       0.8104 ± 0.0563        0.7822       0.8293
+V09       3  1024-512-256         0.4  Yes      0.8208 ± 0.0442        0.7987       0.8348
+V10       4  1024-512-256-256     0.5  No       0.7916 ± 0.0582        0.7625       0.8178
+V11       2  128-128              0.2  No       0.8132 ± 0.0601        0.7831       0.8325
+V12       2  160-160              0.2  No       0.8141 ± 0.0638        0.7822       0.8342
+V13       2  192-192              0.2  No       0.8129 ± 0.0591        0.7833       0.8318
+V14       2  224-224              0.2  No       0.8154 ± 0.0548        0.7880       0.8332
+V15       2  256-256              0.2  No       0.8143 ± 0.0573        0.7857       0.8329
+V16       2  256-256              0.2  Yes      0.8322 ± 0.0423        0.8110       0.8425
+V17       3  192-192-192          0.2  Yes      0.8291 ± 0.0484        0.8049       0.8412
+V18       3  224-224-224          0.3  No       0.8086 ± 0.0583        0.7795       0.8267
+V19       4  160-160-160-160      0.3  Yes      0.8220 ± 0.0461        0.7990       0.8341
+V20       3  256-256-256          0.4  Yes      0.8253 ± 0.0482        0.8012       0.8380
+
+--- Summary ---
+Best RankScore:          V16 = 0.8110 (Avg=0.8322, Std=0.0423)
+Best Avg val F1(macro):  V16 = 0.8322 ± 0.0423

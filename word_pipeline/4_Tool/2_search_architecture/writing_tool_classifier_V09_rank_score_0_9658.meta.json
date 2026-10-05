@@ -1,0 +1,18 @@
+{
+  "best_arch_id": "V09",
+  "rank_by": "rank_score",
+  "rank_score": 0.9657639600330927,
+  "std_penalty_lambda": 0.5,
+  "untuned_combined_f1_macro": 0.98083549307178,
+  "thresholds": {
+    "biases": [
+      0.0,
+      0.30000000000000027
+    ],
+    "tuned_combined_f1_macro": 0.98122332616473,
+    "tuned_combined_f1_per_class": [
+      0.9896519285042332,
+      0.9727947238252267
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+===== Matching Info =====
+Prediction annotations : 1542
+Groundtruth annotations: 1542
+Matched annotations    : 1542
+Missing in prediction  : 0
+Missing in groundtruth : 0
+
+Valid evaluated samples: 1542
+
+Labels used:
+['black', 'blue', 'gray', 'yellow', 'red', 'purple']
+
+===== Overall Metrics =====
+Accuracy   : 0.9501
+Primary Macro F1 (excluding zero-support yellow): 0.9422
+Macro F1 (including zero-support yellow as F1=0): 0.7852
+Weighted F1: 0.9510
+Balanced accuracy over non-zero-support classes: 0.9311
+
+===== Classification Report =====
+              precision    recall  f1-score   support
+
+       black     0.9146    0.7576    0.8287        99
+        blue     0.9024    0.9289    0.9155       239
+        gray     0.9648    0.9689    0.9669      1159
+      yellow     0.0000    0.0000    0.0000         0
+         red     1.0000    1.0000    1.0000        32
+      purple     1.0000    1.0000    1.0000        13
+
+    accuracy                         0.9501      1542
+   macro avg     0.7970    0.7759    0.7852      1542
+weighted avg     0.9529    0.9501    0.9510      1542
+
+===== Confusion Matrix =====
+           PRED_black  PRED_blue  PRED_gray  PRED_yellow  PRED_red  PRED_purple
+GT_black           75          0         24            0         0            0
+GT_blue             0        222         17            0         0            0
+GT_gray             7         24       1123            5         0            0
+GT_yellow           0          0          0            0         0            0
+GT_red              0          0          0            0        32            0
+GT_purple           0          0          0            0         0           13
+
+===== Saved Files =====
+All eval results           : colour_eval_result/all_eval_results.csv
+Wrong predictions          : colour_eval_result/wrong_predictions.csv
+Classification report      : colour_eval_result/classification_report.csv
+Confusion matrix CSV       : colour_eval_result/confusion_matrix.csv
+Confusion matrix PNG       : colour_eval_result/confusion_matrix_seaborn_style.png
+Summary                    : colour_eval_result/summary.txt
+
+Done.

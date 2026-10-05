@@ -1,0 +1,3 @@
+python 0_combine_json.py
+
+python 3_output_compare_pred_top_gt_bottom.py

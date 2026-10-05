@@ -1,0 +1,7 @@
+,PRED_black,PRED_blue,PRED_gray,PRED_yellow,PRED_red,PRED_purple
+GT_black,75,0,24,0,0,0
+GT_blue,0,222,17,0,0,0
+GT_gray,7,24,1123,5,0,0
+GT_yellow,0,0,0,0,0,0
+GT_red,0,0,0,0,32,0
+GT_purple,0,0,0,0,0,13

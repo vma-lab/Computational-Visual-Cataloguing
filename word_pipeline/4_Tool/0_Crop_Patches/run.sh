@@ -1,0 +1,5 @@
+source activate open-mmlab
+
+python parallel_crop_patches_trang_v1_for_training.py 
+python parallel_crop_patches_trang_v1_for_testing.py
+

@@ -1,0 +1,4 @@
+source activate open-mmlab
+
+python V8_EnhancedBinarization_MultiAlgo_Gmm2Color_UpdatedJson_ProgressBar.py 
+

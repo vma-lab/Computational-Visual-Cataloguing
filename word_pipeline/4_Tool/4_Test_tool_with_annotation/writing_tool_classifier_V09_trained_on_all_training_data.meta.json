@@ -1,0 +1,42 @@
+{
+  "model_path": "writing_tool_classifier_V09_trained_on_all_training_data.pt",
+  "architecture_id": "V09",
+  "architecture": {
+    "depth": 3,
+    "widths": [
+      1024,
+      512,
+      256
+    ],
+    "use_bn": true,
+    "dropout": 0.4,
+    "activation": "relu"
+  },
+  "epochs": 30,
+  "batch_size": 64,
+  "input_dim": 768,
+  "output_dim": 2,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "use_cosine_lr": true,
+  "use_class_weighted_ce": true,
+  "use_mixup": true,
+  "mixup_alpha": 0.3,
+  "use_ema": true,
+  "ema_decay": 0.999,
+  "l2_normalize_features": true,
+  "seeds": [
+    42,
+    7961,
+    15880
+  ],
+  "data_path": "writing_tool_features_clipL14_all.npz",
+  "class_names": [
+    "pcl",
+    "ink"
+  ],
+  "class_counts": [
+    19182,
+    19182
+  ]
+}

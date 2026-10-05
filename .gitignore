@@ -1,0 +1,14 @@
+# PyCharm project settings
+.idea/
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Model weights (downloaded separately, see the READMEs)
+*.pt
+*.pth
+
+# ScriptSight thumbnail cache and exported results (created when it runs)
+scriptsight/.thumb_cache/
+scriptsight/output/
